@@ -1,7 +1,8 @@
 import React from 'react';
+import { FunctionComponent } from 'react';
 import {ScrollView, View, TextInput, Image} from 'react-native';
 
-function index() {
+const Search : FunctionComponent = () => {
   return (
     <ScrollView
     style={{
@@ -41,4 +42,4 @@ function index() {
   )
 }
 
-export default index
+export default Search

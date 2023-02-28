@@ -1,7 +1,9 @@
 import React from 'react'
+import { FunctionComponent } from 'react';
+
 import { ScrollView } from 'react-native'
 
-function index() {
+const ReviewMore : FunctionComponent = () => {
   return (
     <ScrollView>
         
@@ -9,4 +11,4 @@ function index() {
   )
 }
 
-export default index
+export default ReviewMore;

@@ -24,6 +24,7 @@ import Detail from './src/pages/Detail'
 import Home from './src/pages/Home'
 import Search from './src/pages/Search'
 import Splash from './src/pages/Splash'
+import Routes from './src/routes/RootStack';
 
 
 
@@ -33,7 +34,8 @@ const App = () => {
     {/* <Home/> */}
     {/* <Dashboard /> */}
     {/* <Detail/> */}
-    <Search />
+    {/* <Search /> */}
+    <Routes/>
   </SafeAreaView>
 }
 

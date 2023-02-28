@@ -1,4 +1,5 @@
 import React from 'react';
+import { FunctionComponent } from 'react';
 import {View, Text, Image, TouchableOpacity, ImageBackground, ScrollView, Dimensions} from 'react-native';
 import { useState,useEffect} from 'react';
 import axios from 'axios';
@@ -6,7 +7,7 @@ import axios from 'axios';
 import Slider from '../../components/Slider'
 
 
-function index() {
+const Home : FunctionComponent = () => {
 
     interface MovieType {
         adult: boolean
@@ -30,10 +31,20 @@ function index() {
 
 
     const [trending, setTrending] = useState<MovieType[]>([]);
+    const [upcoming, setUpcoming] = useState<MovieType[]>([]);
+    const [popular, setPopular] = useState<MovieType[]>([]);
+    const [topRate, setTopRate] = useState<MovieType[]>([]);
+    const [recomendation, setRecomendation] = useState<MovieType[]>([]);
+
+
     const API_KEY = '595c463d085b81bd4ada5e1bacb38c86'
 
     useEffect(() => {
         getTrending()
+        getUpComing()
+        getPopular()
+        getTopRate()
+        getRecomendation()
     }, [])
 
     function getTrending(){
@@ -45,6 +56,162 @@ function index() {
                 for(let k= 0; k < 5; k++){
                     let thisresponse = allResponese[k];
                     setTrending(
+                        prevTrending => [
+                            ...prevTrending, 
+                            {
+                                adult: thisresponse.adult,
+                                backdrop_path: thisresponse.backdrop_path,
+                                id : thisresponse.id,
+                                title: thisresponse.title,
+                                original_language: thisresponse.original_language,
+                                original_title:thisresponse.original_title,
+                                overview: thisresponse.overview,
+                                poster_path: thisresponse.poster_path,
+                                media_type: thisresponse.media_type,
+                                genre_ids: thisresponse.genre_ids,
+                                popularity: thisresponse.popularity,
+                                release_date: thisresponse.release_date,
+                                video: thisresponse.video,
+                                vote_average: thisresponse.vote_average,
+                                vote_count: thisresponse.vote_count
+        
+                            }
+                        ]
+                    )                    
+
+                }
+                
+            })
+        }
+        
+    }
+
+    function getUpComing(){
+        if(upcoming.length ==0){
+            axios
+            .get(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`)
+            .then((responese) => {
+                let allResponese = responese.data.results;
+                for(let k= 0; k < 5; k++){
+                    let thisresponse = allResponese[k];
+                    setUpcoming(
+                        prevTrending => [
+                            ...prevTrending, 
+                            {
+                                adult: thisresponse.adult,
+                                backdrop_path: thisresponse.backdrop_path,
+                                id : thisresponse.id,
+                                title: thisresponse.title,
+                                original_language: thisresponse.original_language,
+                                original_title:thisresponse.original_title,
+                                overview: thisresponse.overview,
+                                poster_path: thisresponse.poster_path,
+                                media_type: thisresponse.media_type,
+                                genre_ids: thisresponse.genre_ids,
+                                popularity: thisresponse.popularity,
+                                release_date: thisresponse.release_date,
+                                video: thisresponse.video,
+                                vote_average: thisresponse.vote_average,
+                                vote_count: thisresponse.vote_count
+        
+                            }
+                        ]
+                    )                    
+
+                }
+                
+            })
+        }
+        
+    }
+
+    function getPopular(){
+        if(popular.length ==0){
+            axios
+            .get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`)
+            .then((responese) => {
+                let allResponese = responese.data.results;
+                for(let k= 0; k < 5; k++){
+                    let thisresponse = allResponese[k];
+                    setPopular(
+                        prevTrending => [
+                            ...prevTrending, 
+                            {
+                                adult: thisresponse.adult,
+                                backdrop_path: thisresponse.backdrop_path,
+                                id : thisresponse.id,
+                                title: thisresponse.title,
+                                original_language: thisresponse.original_language,
+                                original_title:thisresponse.original_title,
+                                overview: thisresponse.overview,
+                                poster_path: thisresponse.poster_path,
+                                media_type: thisresponse.media_type,
+                                genre_ids: thisresponse.genre_ids,
+                                popularity: thisresponse.popularity,
+                                release_date: thisresponse.release_date,
+                                video: thisresponse.video,
+                                vote_average: thisresponse.vote_average,
+                                vote_count: thisresponse.vote_count
+        
+                            }
+                        ]
+                    )                    
+
+                }
+                
+            })
+        }
+        
+    }
+
+    function getTopRate(){
+        if(topRate.length ==0){
+            axios
+            .get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`)
+            .then((responese) => {
+                let allResponese = responese.data.results;
+                for(let k= 0; k < 5; k++){
+                    let thisresponse = allResponese[k];
+                    setTopRate(
+                        prevTrending => [
+                            ...prevTrending, 
+                            {
+                                adult: thisresponse.adult,
+                                backdrop_path: thisresponse.backdrop_path,
+                                id : thisresponse.id,
+                                title: thisresponse.title,
+                                original_language: thisresponse.original_language,
+                                original_title:thisresponse.original_title,
+                                overview: thisresponse.overview,
+                                poster_path: thisresponse.poster_path,
+                                media_type: thisresponse.media_type,
+                                genre_ids: thisresponse.genre_ids,
+                                popularity: thisresponse.popularity,
+                                release_date: thisresponse.release_date,
+                                video: thisresponse.video,
+                                vote_average: thisresponse.vote_average,
+                                vote_count: thisresponse.vote_count
+        
+                            }
+                        ]
+                    )                    
+
+                }
+                
+            })
+        }
+        
+    }
+
+    function getRecomendation(){
+        if(recomendation.length ==0){
+            axios
+            .get(`https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=${API_KEY}&language=en-US&page=1`)
+            .then((responese) => {
+                let allResponese = responese.data.results;
+                for(let k= 0; k < 5; k++){
+                    let thisresponse = allResponese[k];
+                    setRecomendation(
                         prevTrending => [
                             ...prevTrending, 
                             {
@@ -92,7 +259,6 @@ function index() {
 
     
 
-    console.log(trending)
     // let relesae = trending[0].release_date.split("-")
   return (
     <ScrollView style={{backgroundColor:"#1E1E1E"}}>
@@ -125,24 +291,26 @@ function index() {
                     horizontal={true}
                     style={{marginTop: 20 }}
                     >
-                    <View style={{borderRadius:10, overflow: 'hidden', width:  Dimensions.get('window').width*0.9, marginRight: 10}}>
-                        <ImageBackground 
-                            source = {{uri:'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/sADB9n2KwhQNsRLfzeuTj8BsqeB.jpg'}}
-                            resizeMode = 'cover'
-                            imageStyle ={{opacity: 0.5}}
-                            style={{
-                                width:'100%',
-                                height: 150,
-                                backgroundColor: 'black',
-                                
-                            }}
-                        >
-                            <View style={{position:'absolute', bottom:0, margin:10}}>
-                                <Text style={{color:'white', fontWeight: '700', fontSize: 20}}>Hello</Text>
-                                <Text style={{color:'white', fontWeight: '300', fontSize: 13}}>2h1m</Text>
-                            </View>
-                        </ImageBackground>
+                    {trending.map((result) => {
+                        return <View style={{borderRadius:10, overflow: 'hidden', width:  Dimensions.get('window').width*0.9, marginRight: 10}}>
+                            <ImageBackground 
+                                source = {{uri:`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${result.poster_path}`}}
+                                resizeMode = 'cover'
+                                imageStyle ={{opacity: 0.5}}
+                                style={{
+                                    width:'100%',
+                                    height: 150,
+                                    backgroundColor: 'black',
+                                    
+                                }}
+                            >
+                                <View style={{position:'absolute', bottom:0, margin:10}}>
+                                    <Text style={{color:'white', fontWeight: '700', fontSize: 20}}>{result.original_title}</Text>
+                                    <Text style={{color:'white', fontWeight: '300', fontSize: 13}}>{result.release_date}</Text>
+                                </View>
+                            </ImageBackground>
                         </View> 
+                    })}
 
                         <View style={{borderRadius:10, overflow: 'hidden', width:  Dimensions.get('window').width*0.9, marginRight: 10}}>
                         <ImageBackground 
@@ -197,4 +365,4 @@ function index() {
   )
 }
 
-export default index
+export default Home

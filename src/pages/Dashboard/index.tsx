@@ -1,11 +1,13 @@
 import React,  {useState } from 'react';
+import { FunctionComponent } from 'react';
+
 import {View, Text, ScrollView, ImageBackground} from 'react-native';
 import LinearGradien from 'react-native-linear-gradient';
 import axios from 'axios';
 
 
 
-function index() {
+const Dashboard : FunctionComponent = () => {
     const [name, setName] = useState()
     const [username, setUsername] = useState();
 
@@ -81,4 +83,4 @@ function index() {
   )
 }
 
-export default index
+export default Dashboard

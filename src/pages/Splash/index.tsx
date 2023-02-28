@@ -1,9 +1,12 @@
 import React from 'react';
+import { FunctionComponent } from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 
-function index() {
+
+const Login : FunctionComponent = ()=> {
+    // const navigate = useNavigate();
   return (
-    <View style={{  backgroundColor: '#1E1E1E'}}>
+    <View style={{  backgroundColor: '#1E1E1E', flex: 1}}>
         <View style={{margin: 30 ,  backgroundColor: '#1E1E1E'}}>
             <Image 
                 source={require('../../assets/logo.png')}
@@ -26,7 +29,9 @@ function index() {
                     height: 95,
                     alignItems: 'center',
                     borderRadius: 100,
-                }}>
+                }}
+                onPress= {() => {}}
+                >
                     <Image 
                         source={require('../../assets/Unlock.png')}
                         
@@ -45,4 +50,4 @@ function index() {
   )
 }
 
-export default index
+export default Login;
